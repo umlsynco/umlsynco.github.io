@@ -17,6 +17,32 @@ compile '/stylesheet/' do
   # don’t filter or layout
 end
 
+compile '/' do
+  filter :kramdown
+  layout 'default'
+end
+
+compile '/features/diagrams' do
+  filter :kramdown
+  layout 'diagrams'
+end
+
+
+compile '/features/*' do
+  filter :kramdown
+  layout 'default'
+end
+
+compile '/examples/*' do
+  filter :kramdown
+  layout 'default'
+end
+
+compile '/scope/*' do
+  filter :kramdown
+  layout 'default'
+end
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
@@ -28,6 +54,22 @@ end
 
 route '/stylesheet/' do
   '/style.css'
+end
+
+route '/features/*' do
+    item.identifier.chop + '.' + item[:extension]
+end
+
+route '/examples/*' do
+    item.identifier.chop + '.' + item[:extension]
+end
+
+route '/scope/*' do
+    item.identifier.chop + '.' + item[:extension]
+end
+
+route '/index.html' do
+    item.identifier.chop + '.' + item[:extension]
 end
 
 route '*' do
