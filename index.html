@@ -45,6 +45,39 @@ For the local clone of your Github repository you could use Eclipse plug-in whic
     <li><a> Simplify sharing diagrams and documentation with collegues</a></li>
     <li><a> Snippets - the way to share knowledge</a></li>
 </ul>
+
+<h3>
+<a name="project-values" class="anchor" href="#project-values"><span class="octicon octicon-link"></span></a>Additional project values:</h3>
+<ul>
+    <li><a> Framework for GitHub applications:</a>
+      It is a common task for all GitHub application developers to create a framework for the repository navigation, edit, commit etc.
+      In scope of this project we have developed a framework for GitHub applications which could simplify an integration of any content editor:
+      <ul>
+         <li><a> Multiple files commit to GitHub;</a></li>
+         <li><a> API for a custom editor/viewer creation for the specific content type;</a></li>
+         <li><a> API to create a custom converter from one format to another which is acceptable by existing viewer; For example: UML OWL/RDF -> UML XMI;  </a></li>
+      </ul>
+      User could find and register any custom viewer (which is located on GitHub) and associate the content type with it.
+    </li>
+    <li><a> HTTP API for the offline clone of repository:</a>
+      It is essential to do not create a PC application for the same web editor. Therefore we have developed a draft version of websync API which is similart to Eclipse DStore API and provides an access to the project tree, file-content and source code indexer API.
+      Of course the base API should implement an autherntication procedure, file-tree navigation and file content request.
+    </li>
+    <li><a> Integration of content into markdown documentation or another content viewer/editor:</a>
+      It is a common case when user needs to integrate some diagram into markdown document(at least for UML);
+      In scope of this project we are thinking about the common way to provide the reference on content:
+      <ul>
+         <li><a> By full path </a></li>
+         <li><a> By relative path </a></li>
+         <li><a> By SHA sum </a></li>
+      </ul>
+    </li>
+    <li><a> Widgets:</a>
+      It is often required to create an embedded viewer widget for the content integration on external site like www.stackoverflow.com;
+      It could be code snippet, or UML diagram, or markdown documentation;
+      So, one of the value of this project is to provide an easy way to create a viewer widgets for the user-specific content;
+    </li>
+</ul>
         </section>
 
         <aside id="sidebar">
