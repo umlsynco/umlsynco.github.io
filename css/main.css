@@ -12,6 +12,7 @@ body {
   color: #666666; 
   line-height: 1em;
   position:relative;
+  height:500px;
 }
 
 a.editablefield  {

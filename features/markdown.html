@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/tablesorter/themes/blue/style.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/dynatree/src/skin-vista/ui.dynatree.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/google-code-prettify/src/prettify.css" type="text/css" media="screen"/>
-  <link rel="stylesheet" type="text/css" hrep="http://umlsynco.github.io/css/github.css"/>
+  <link rel="stylesheet" rel="stylesheet" type="text/css" href="http://umlsynco.github.io/css/github.css"/>
   <script src="http://umlsynco.github.io/js/jquery.js"></script>
   <script src="http://umlsynco.github.io/js/github.js"></script>
   <script src="http://umlsynco.github.io/js/jquery-ui.js"></script>
@@ -89,6 +89,27 @@
         '+converter.makeHtml(jsonData)+'\
         </article></div>';
         $("#" + thisId).append(innerHtml); // Markdown loaded
+          $("#" + thisId + " article.markdown-body .pack-diagram").each(function() {
+              var relativePath = $(this).attr("path");
+              var thisId2 = $(this).attr("id");
+              if (!relativePath)
+                return;
+              var liof = path.lastIndexOf("/"), // if slash not found than it is root
+              diapath = ((liof == -1) ? "/":path.substring(0, liof+1)) + relativePath;
+              $.ajax({
+                url: API_URL + diapath,
+                type: "GET",
+                dataType: "jsonp",
+                success: function(obj2) {
+                  var jsonData2 = decodeMDContent(obj2);
+                  jsonData2 = $.parseJSON(jsonData2);
+                  jsonData2.multicanvas = true;
+                  Loader.Diagram(jsonData2.type,jsonData2.base_type || "base",jsonData2,"#" + thisId2,function() {});
+                },
+                error: function(err) {
+                }
+              });// $.ajax
+              });// $each
         }
         else {
           jsonData = $.parseJSON(jsonData);
@@ -125,7 +146,7 @@
 
 <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>UML+Markdown Example:</h3>
-<div id="content"><div id="readme" type="markdown" ref="/repos/umlsynco/diagrams/contents/diagrams/ProxyPattern.md" class="us-diagram-example" style="height:600px;width:700px;overflow:hidden;"></div></div>
+<div id="content"><div id="us-markdown-example" type="markdown" ref="/repos/umlsynco/diagrams/contents/diagrams/ProxyPattern.md" class="us-diagram-example" style="height:100%;width:100%;overflow:none;"></div></div>
 <p><br /></p>
 
 
