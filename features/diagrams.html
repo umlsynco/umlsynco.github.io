@@ -14,7 +14,6 @@
     <![endif]-->
 
     <title>DIAGRAM.IO</title>
-  <link rel="stylesheet" type="text/css" hrep="http://umlsynco.github.io/css/github.css"/>
   <link href="http://umlsynco.github.io/css/gray-start/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/scrollabletab/css/jquery.ui.tabs.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="http://umlsynco.github.io/css/main.css" type="text/css" media="all"/>
@@ -22,6 +21,7 @@
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/tablesorter/themes/blue/style.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/dynatree/src/skin-vista/ui.dynatree.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="http://umlsynco.github.io/js/3pp/google-code-prettify/src/prettify.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" type="text/css" hrep="http://umlsynco.github.io/css/github.css"/>
   <script src="http://umlsynco.github.io/js/jquery.js"></script>
   <script src="http://umlsynco.github.io/js/github.js"></script>
   <script src="http://umlsynco.github.io/js/jquery-ui.js"></script>
@@ -57,9 +57,12 @@
   $(document).ready(function() {
     var Loader = new dm.base.loader("./");
     var API_URL = 'https://api.github.com';
+    var converter = new Showdown.converter({ extensions: ['umlsync'] });
+
     $.each($(".us-diagram-example"), function(key, item) {
     var path = $(item).attr("ref");
     var thisId = $(item).attr("id");
+    var isMarkdown = $(item).attr("type") == "markdown";
         function decodeMDContent(data) {
           for (d in data) {
             if (d == 'data') {
@@ -79,9 +82,19 @@
       dataType: "jsonp",
       success: function(obj) {
         var jsonData = decodeMDContent(obj);
-        jsonData = $.parseJSON(jsonData);
-        jsonData.multicanvas = true;
-        Loader.Diagram(jsonData.type,jsonData.base_type || "base",jsonData,"#" + thisId,function() {});
+        if (isMarkdown) {
+            var innerHtml = '<div class="us-diagram announce instapaper_body md" data-path="/" id="readme"><span class="name">\
+        <span class="mini-icon mini-icon-readme"></span> '+path+'</span>\
+        <article class="markdown-body entry-content" itemprop="mainContentOfPage">\
+        '+converter.makeHtml(jsonData)+'\
+        </article></div>';
+        $("#" + thisId).append(innerHtml); // Markdown loaded
+        }
+        else {
+          jsonData = $.parseJSON(jsonData);
+          jsonData.multicanvas = true;
+          Loader.Diagram(jsonData.type,jsonData.base_type || "base",jsonData,"#" + thisId,function() {});
+        }
        },
        error: function(err) {
        }
