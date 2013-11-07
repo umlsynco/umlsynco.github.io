@@ -63,7 +63,7 @@
                     }
                     
                     if (isDiagram) {
-                      return '<div id="ClassInheritanceExample"\
+                      return '<div id="ClassInheritanceExample-'+title+'"\
                          class="pack-diagram" ' + branch + repo + path + title+'></div>'
                     }
                     
