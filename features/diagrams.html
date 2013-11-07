@@ -33,7 +33,7 @@
   <script src="http://umlsynco.github.io/js/3pp/base64/jquery.base64.js"></script>
   <script src="http://umlsynco.github.io/js/3pp/metadata/jquery.metadata.js"></script>
   <style>
-    body { font-size: 62.5%; }
+    #content { font-size: 80%; }
     label, input { display: inline; }
     fieldset { padding:0; border:0; margin-top:5px; }
     h1 { font-size: 1.2em; margin: .6em 0; }
@@ -57,7 +57,9 @@
   $(document).ready(function() {
     var Loader = new dm.base.loader("./");
     var API_URL = 'https://api.github.com';
-    var path = "/repos/umlsynco/diagrams/contents/diagrams/classDiagram.umlsync";
+    $.each($(".us-diagram-example"), function(key, item) {
+    var path = $(item).attr("ref");
+    var thisId = $(item).attr("id");
         function decodeMDContent(data) {
           for (d in data) {
             if (d == 'data') {
@@ -72,26 +74,19 @@
         };
 
     $.ajax({
-          url: API_URL + path,
-	  type: "GET",
-	  dataType: "jsonp",
-	  success: function(obj) {
-	      var jsonData = decodeMDContent(obj);
-	      jsonData = $.parseJSON(jsonData);
-	      jsonData.multicanvas = true;
-    Loader.Diagram(
-        jsonData.type,
-        jsonData.base_type || "base",
-        jsonData,
-        "#us-class-diagram-example",
-	function() {});
-
-          },
-        error: function(err) {
-         }
-	  }
-		);
-
+      url: API_URL + path,
+      type: "GET",
+      dataType: "jsonp",
+      success: function(obj) {
+        var jsonData = decodeMDContent(obj);
+        jsonData = $.parseJSON(jsonData);
+        jsonData.multicanvas = true;
+        Loader.Diagram(jsonData.type,jsonData.base_type || "base",jsonData,"#" + thisId,function() {});
+       },
+       error: function(err) {
+       }
+    });// $.ajax
+    });// $.each
   });
   
 </script>
@@ -122,11 +117,15 @@
 
 <p>The basic functionality of Diagram.IO you could find on <a href="http://www.youtube.com/watch?v=7Qi-d13Dpog">youtube channel</a>.
 </p>
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>UML Class Diagram Example:</h3>
+<div id="content"><div id="us-class-diagram-example" ref="/repos/umlsynco/diagrams/contents/diagrams/classDiagram.umlsync" class="us-diagram-example" style="height:600px;width:700px;overflow:hidden;"></div></div>
+<p><br /></p>
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>UML Package Diagram Example:</h3>
+<div id="content"><div id="us-package-diagram-example" ref="/repos/umlsynco/diagrams/contents/diagrams/packageDiagram.umlsync" class="us-diagram-example" style="height:600px;width:700px;overflow:hidden;"></div></div>
 
-
-        <div id="content"><div id="us-class-diagram-example" style='height:600px;width:700px;overflow:hidden;'></div></div>
         </section>
-
         <aside id="sidebar">
 
       <h2><a href="http://umlsynco.github.io/">Home</a></h2>
