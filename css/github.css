@@ -2,6 +2,7 @@
     background: none repeat scroll 0 0 #EEEEEE;
     border-radius: 3px 3px 3px 3px;
     padding: 3px;
+    overflow: hidden;
 }
 #readme.contributing > div {
     max-height: 250px;

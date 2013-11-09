@@ -4,7 +4,7 @@
 //
 
 (function(){
-
+    var call_count = 0;
     var umlsync = function(converter) {
         return [
             { type: 'output', filter: function(source){
@@ -63,7 +63,8 @@
                     }
                     
                     if (isDiagram) {
-                      return '<div id="ClassInheritanceExample"\
+                      ++call_count;
+                      return '<div id="ClassInheritanceExample-'+call_count+'"\
                          class="pack-diagram" ' + branch + repo + path + title+'></div>'
                     }
                     
