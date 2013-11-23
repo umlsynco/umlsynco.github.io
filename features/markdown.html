@@ -50,7 +50,7 @@
   </style>
   <script src="http://umlsynco.github.io/js/3pp/showdown/src/showdown.js"></script>
   <script src="http://umlsynco.github.io/js/3pp/showdown/src/extensions/umlsync.js"></script>
-  <script src="http://umlsynco.github.io/js/diagrammer.min.js"></script>
+  <script src="file:///home/evgeny/Projects/GH8/site/umlsynco.github.io/js/diagrammer.min.js"></script>
   <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -71,11 +71,10 @@
     var Loader = new dm.base.loader("./");
     var API_URL = 'https://api.github.com';
     var converter = new Showdown.converter({ extensions: ['umlsync'] });
+    dm.dm.fw = dm.dm.fw || {};
 
-    $.each($(".us-diagram-example"), function(key, item) {
-    var path = $(item).attr("ref");
-    var thisId = $(item).attr("id");
-    var isMarkdown = $(item).attr("type") == "markdown";
+    dm.dm.fw.loadContent2 = function(thisId, path, type) {
+    var isMarkdown = type == "markdown";
         function decodeMDContent(data) {
           for (d in data) {
             if (d == 'data') {
@@ -133,6 +132,11 @@
        error: function(err) {
        }
     });// $.ajax
+    }
+    $.each($(".us-diagram-example"), function(key, item) {
+        var path = $(item).attr("ref");
+        var thisId = $(item).attr("id");
+        dm.dm.fw.loadContent2(thisId, path, $(item).attr("type"));
     });// $.each
   });
   
@@ -159,7 +163,9 @@
 
 <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>UML+Markdown Example:</h3>
-<div id="content"><div id="us-markdown-example" type="markdown" ref="/repos/umlsynco/diagrams/contents/diagrams/ProxyPattern.md" class="us-diagram-example" style="height:100%;width:100%;overflow:none;"></div></div>
+<div id="content">
+    <div id="us-markdown-example" type="markdown" ref="/repos/umlsynco/diagrams/contents/diagrams/ProxyPattern.md" class="us-diagram-example" style="height:100%;width:100%;overflow:none;">
+</div></div>
 <p><br /></p>
 
 
