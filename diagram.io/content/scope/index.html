@@ -1,0 +1,18 @@
+--- 
+title: UmlSync scope
+---
+
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Extra scop of UmlSync project</h3>
+
+<p>
+    There are a lot of small projects which implements viewers/editors of data. 
+    It takes a lot of time-resources to implement UmlSync like framework for GitHub for such projects therefore we decided to specify interfaces for a small projects for integration into framework.
+
+    The following interfaces will be supported:
+    <ul>
+    <li><a>Format Converter</a><p>- an interface to convert one format to another (and/or back). Fox examle yuml is text-based format therefore one way converter required in that case (converter to umlsync-json format). But in case of XMI-UmlSync the 2 way converter required.</p></li>
+    <li><a>Format Viewer</a><p>- an interface for integration of format viewer. For example it could be LaTeX viewer which is based on mathjax JavaScript library.</p></li>
+    <li><a>Format Editor</a><p>- an interface for integration of format editor. The default editor is text editor (or no edit at all, view only mode) but developers could create and integrate there own editor or extend an existing one.</p></li>
+    </ul>
+</p>

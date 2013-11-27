@@ -42,6 +42,11 @@ compile '/scope/*' do
   layout 'default'
 end
 
+compile '/widgets/*' do
+  filter :kramdown
+  layout 'default'
+end
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
@@ -60,6 +65,10 @@ route '/features/*' do
 end
 
 route '/examples/*' do
+    item.identifier.chop + '.' + item[:extension]
+end
+
+route '/widgets/*' do
     item.identifier.chop + '.' + item[:extension]
 end
 
