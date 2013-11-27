@@ -1,13 +1,32 @@
 <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Markdown extensions !</h3>
 
-<p>It is often essential to integrate diagrams into markdown documentation
+<p>It is often essential to integrate diagrams into internal documentation of your project.
+UmlSync provides an ability to insert diagrams into markdown documentation.
+
+
+<h3>There are 3 reference types:</h3>
+<ul>
+    <li><a>Relative path:</a>
+    <p>
+        &nbsp;&nbsp;![Diagram: ] (http://umlsync.org/github?path=./file.umlsync "")
+    </p>
+    </li>
+    <li><a>Absolute path:</a>
+    <p>
+        &nbsp;&nbsp;![Diagram: ] (http://umlsync.org/github/umlsynco/diagrams/master/diagrams/ElementInitialization.umlsync "")
+    </p>
+    </li>
+    <li><a>SHA path</a>
+    <p>
+        &nbsp;&nbsp;![Diagram: ] (http://umlsync.org/github/repos/umlsynco/diagrams/git/blobs/9974fbe3ef6690d32064f753d962d661b1fc7384?1385219431501 "")
+    </p>
+    </li>
+    </ul>
 </p>
 
-<h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>UML+Markdown Example:</h3>
-<div id="content">
-    <div id="us-markdown-example" type="markdown" ref="/repos/umlsynco/diagrams/contents/diagrams/ProxyPattern.md" class="us-diagram-example" style='height:100%;width:100%;overflow:none;'>
-</div></div>
-<br>
+All paths are based on github's paths. You could easily replace __"http://umlsync.org/github"__ on  __"https://github.com"__ and open the resource on Github directly.
+
+For more information about embedded diagrams see:<br> <a href="http://umlsync.org/github/umlsynco/diagrams/master/examples/EmbeddedDiagrams.md">http://umlsync.org/github/umlsynco/diagrams/master/examples/EmbeddedDiagrams.md example.</a>
+
 

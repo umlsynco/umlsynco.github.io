@@ -27,12 +27,6 @@ compile '/features/diagrams' do
   layout 'diagrams'
 end
 
-compile '/features/markdown' do
-  filter :kramdown
-  layout 'diagrams'
-end
-
-
 compile '/features/*' do
   filter :kramdown
   layout 'default'
